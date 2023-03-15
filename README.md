@@ -50,3 +50,4 @@ TODO : https://tcuvelier.developpez.com/tutoriels/gpgpu/cuda/introduction/?page=
 ## :bookmark_tabs: Usefull links 
 
 - [Doc NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html)
+- [Basic CUDA C/C++](https://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf)
