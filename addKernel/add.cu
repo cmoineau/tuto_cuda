@@ -1,35 +1,32 @@
 #include <stdio.h>
-#include <cuda_runtime.h>
 
-__global__ void add_kernel(int a, int b, int* result) {
-    *result = a + b;
+__global__ void add_kernel(int *a, int *b, int* result) {
+    *result = *a + *b;
 }
 
 int main() {
     int a = 3;
     int b = 5;
     int c;
-    int* dev_c;
+    int *dev_a, *dev_b, *dev_c;
+
+    // Allocate space for device copied of a, b, c
+    cudaMalloc((void**) &dev_a, sizeof(int));
+    cudaMalloc((void**) &dev_b, sizeof(int));
+    cudaMalloc((void**) &dev_c, sizeof(int));
     
-    cudaError_t err = cudaMalloc(&dev_c, sizeof(int));
-    if (err != cudaSuccess) {
-        printf("cudaMalloc error: %s\n", cudaGetErrorString(err));
-        return 1;
-    }
 
-    add_kernel<<<1, 1>>>(a, b, dev_c);
-    err = cudaDeviceSynchronize(); // Wait for kernel to finish
-    if (err != cudaSuccess) {
-        printf("cudaDeviceSynchronize error: %s\n", cudaGetErrorString(err));
-        return 1;
-    }
-    err = cudaMemcpy(&c, dev_c, sizeof(int), cudaMemcpyDeviceToHost);
-    if (err != cudaSuccess) {
-        printf("cudaMemcpy error: %s\n", cudaGetErrorString(err));
-        return 1;
-    }
+    cudaMemcpy(dev_a, &a, sizeof(int), cudaMemcpyHostToDevice);
+    cudaMemcpy(dev_b, &b, sizeof(int), cudaMemcpyHostToDevice);
+
+
+    add_kernel<<<1, 1>>>(dev_a, dev_b, dev_c);
+    
+    cudaMemcpy(&c, dev_c, sizeof(int), cudaMemcpyDeviceToHost);
+
     printf("%d + %d = %d\n", a, b, c);
-
+    cudaFree(dev_a);
+    cudaFree(dev_b);
     cudaFree(dev_c);
 
     return 0;
