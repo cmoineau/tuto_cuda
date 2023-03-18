@@ -21,7 +21,6 @@ int main() {
 
 
     add_kernel<<<1, 1>>>(dev_a, dev_b, dev_c);
-    
     cudaMemcpy(&c, dev_c, sizeof(int), cudaMemcpyDeviceToHost);
 
     printf("%d + %d = %d\n", a, b, c);
