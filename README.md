@@ -24,10 +24,13 @@ TODO : https://tcuvelier.developpez.com/tutoriels/gpgpu/cuda/introduction/?page=
 
 ## Tools : 
 
-- [nsight-systems](https://developer.nvidia.com/nsight-systems)
+- [nsight-systems](https://developer.nvidia.com/nsight-systems) : Profiler
+- [sanitizer](https://docs.nvidia.com/cuda/compute-sanitizer/index.html) : Help get better error
 
 ## :bookmark_tabs: Usefull links 
 
 - [Doc NVCC](https://docs.nvidia.com/cuda/cuda-compiler-driver-nvcc/index.html)
 
 - [CUDA C/C++ Basics](https://www.nvidia.com/docs/IO/116711/sc11-cuda-c-basics.pdf)
+
+https://docs.nvidia.com/cuda/cuda-c-programming-guide/index.html

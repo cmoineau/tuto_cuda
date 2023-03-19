@@ -49,7 +49,10 @@ __global__ void add_kernel(int *a, int *b, int* result) {
 }
 ```
 
+> Note : ``blockDim.x`` give the number of thread per block !
+
 which is called as follow :
+
 ```cpp
 # define N 2048*2048
 # define THREAD_PER_BLOCKS 512

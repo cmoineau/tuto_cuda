@@ -1,0 +1,1 @@
+function<<<nb_blocks, nb_threads, shared_memory_size, stream>>>
